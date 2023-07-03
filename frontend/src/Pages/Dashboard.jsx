@@ -8,6 +8,12 @@ function Dashboard() {
   const [data, setData] = useState([]);
   const [completedTasks, setCompletedTasks] = useState([])
   const [categories, setCategories] = useState([]);
+  const title = useRef(null);
+  const description = useRef(null);
+  const category = useRef(null);
+  const nameCategory = useRef(null);
+
+  
   useEffect(() => {
     axiosClient.get("/tasks").then((response) => {
         setData(response.data)
@@ -21,9 +27,6 @@ function Dashboard() {
         setCompletedTasks(response.data)
     })
   }, [])
-  const title = useRef(null);
-  const description = useRef(null);
-  const category = useRef(null);
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -50,7 +53,6 @@ function Dashboard() {
         window.location.reload()
     })
   }
-  const nameCategory = useRef(null);
   const createCategory = (e) => {
     e.preventDefault()
     const data = {
